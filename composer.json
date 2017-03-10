@@ -1,0 +1,31 @@
+{
+  "name": "phpnarr/alexa-skills-kit-php",
+  "type": "library",
+  "description": "Library to handle requests and responses for Amazons ASK (Alexa Skilla Kit) written in PHP.",
+  "license": "LGPL-2.0",
+  "keywords": [
+    "ASK",
+    "Skill",
+    "Alexa",
+    "Skills",
+    "Kit"
+  ],
+  "authors": [
+    {
+      "name": "Sascha Glover",
+      "email": "sascha@phpnarr.de"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/saschaglo/alexa-skills-kit-php/issues"
+  },
+  "homepage": "https://github.com/saschaglo/alexa-skills-kit-php",
+  "require": {
+    "php": ">=7.0"
+  },
+  "autoload": {
+    "psr-0": {
+      "AskPhp\\": "src/"
+    }
+  }
+}
