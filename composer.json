@@ -1,7 +1,7 @@
 {
   "name": "phpnarr/alexa-skills-kit-php",
   "type": "library",
-  "description": "Library to handle requests and responses for Amazons ASK (Alexa Skilla Kit) written in PHP.",
+  "description": "Library to handle requests and responses for Amazons ASK (Alexa Skills Kit) written in PHP.",
   "license": "LGPL-2.0",
   "keywords": [
     "ASK",
