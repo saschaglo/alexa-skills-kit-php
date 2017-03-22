@@ -2,6 +2,51 @@
 
 namespace Phpnarr\AskPhp;
 
+/**
+ * Class RequestInterceptor
+ *
+ * @package Phpnarr\AskPhp
+ *
+ * {
+ *  "version": "string",
+ *  "session": {
+ *    "new": true,
+ *    "sessionId": "string",
+ *    "application": {
+ *      "applicationId": "string"
+ *    },
+ *    "attributes": {
+ *      "string": {}
+ *    },
+ *    "user": {
+ *      "userId": "string",
+ *      "accessToken": "string"
+ *    }
+ *  },
+ *  "context": {
+ *    "System": {
+ *      "application": {
+ *        "applicationId": "string"
+ *      },
+ *      "user": {
+ *        "userId": "string",
+ *        "accessToken": "string"
+ *      },
+ *      "device": {
+ *        "supportedInterfaces": {
+ *          "AudioPlayer": {}
+ *        }
+ *      }
+ *    },
+ *    "AudioPlayer": {
+ *      "token": "string",
+ *      "offsetInMilliseconds": 0,
+ *      "playerActivity": "string"
+ *    }
+ *  },
+ *  "request": {}
+ * }
+ */
 class RequestInterceptor
 {
 

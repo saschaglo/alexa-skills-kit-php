@@ -2,7 +2,7 @@
 
 namespace Phpnarr\AskPhp\ServiceRequest;
 
-class User
+class Context
 {
 
 }

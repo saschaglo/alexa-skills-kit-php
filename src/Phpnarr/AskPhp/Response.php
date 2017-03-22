@@ -2,7 +2,7 @@
 
 namespace Phpnarr\AskPhp;
 
-class ResponseGenerator
+class Response
 {
 
 }
