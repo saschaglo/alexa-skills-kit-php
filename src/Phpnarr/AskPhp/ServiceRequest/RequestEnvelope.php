@@ -2,13 +2,20 @@
 
 namespace Phpnarr\AskPhp\ServiceRequest;
 
+use Phpnarr\AskPhp\AbstractEnvelope;
+
 /**
  * Class RequestEnvelope
  *
  * @package Phpnarr\AskPhp\ServiceRequest
  */
-class RequestEnvelope
+class RequestEnvelope extends AbstractEnvelope
 {
+    const NODE_VERSION = 'version';
+    const NODE_SESSION = 'session';
+    const NODE_CONTEXT = 'context';
+    const NODE_REQUEST = 'request';
+
     /**
      * @var string
      */
@@ -33,7 +40,7 @@ class RequestEnvelope
     /**
      * @return string
      */
-    public function getVersion(): string
+    public function getVersion()
     {
         return $this->version;
     }
@@ -42,7 +49,7 @@ class RequestEnvelope
     /**
      * @param string $version
      */
-    public function setVersion(string $version)
+    public function setVersion($version)
     {
         $this->version = $version;
     }
@@ -51,7 +58,7 @@ class RequestEnvelope
     /**
      * @return Session
      */
-    public function getSession(): Session
+    public function getSession()
     {
         return $this->session;
     }
@@ -69,7 +76,7 @@ class RequestEnvelope
     /**
      * @return Context
      */
-    public function getContext(): Context
+    public function getContext()
     {
         return $this->context;
     }
@@ -87,7 +94,7 @@ class RequestEnvelope
     /**
      * @return Request
      */
-    public function getRequest(): Request
+    public function getRequest()
     {
         return $this->request;
     }

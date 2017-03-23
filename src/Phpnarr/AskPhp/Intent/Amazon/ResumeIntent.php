@@ -11,7 +11,7 @@ use Phpnarr\AskPhp\Intent\IntentInterface;
  */
 class ResumeIntent implements IntentInterface
 {
-    public function getName(): string
+    public function getName()
     {
         return 'resume';
     }

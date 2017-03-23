@@ -2,7 +2,9 @@
 
 namespace Phpnarr\AskPhp\ServiceResponse;
 
-class ResponseEnvelope
+use Phpnarr\AskPhp\AbstractEnvelope;
+
+class ResponseEnvelope extends AbstractEnvelope
 {
 
 }

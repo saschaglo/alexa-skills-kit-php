@@ -16,7 +16,7 @@ interface SlotAwareIntentInterface
      *
      * @return Slot[]
      */
-    public function getSlots(): array;
+    public function getSlots();
 
 
     /**

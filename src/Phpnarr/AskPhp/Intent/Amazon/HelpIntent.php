@@ -11,7 +11,7 @@ use Phpnarr\AskPhp\Intent\IntentInterface;
  */
 class HelpIntent implements IntentInterface
 {
-    public function getName(): string
+    public function getName()
     {
         return 'help';
     }

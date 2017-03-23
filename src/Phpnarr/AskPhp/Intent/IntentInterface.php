@@ -14,5 +14,5 @@ interface IntentInterface
      *
      * @return string
      */
-    public function getName(): string;
+    public function getName();
 }

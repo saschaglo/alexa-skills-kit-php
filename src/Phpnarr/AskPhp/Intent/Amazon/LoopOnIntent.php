@@ -11,7 +11,7 @@ use Phpnarr\AskPhp\Intent\IntentInterface;
  */
 class LoopOnIntent implements IntentInterface
 {
-    public function getName(): string
+    public function getName()
     {
         return 'loopOn';
     }

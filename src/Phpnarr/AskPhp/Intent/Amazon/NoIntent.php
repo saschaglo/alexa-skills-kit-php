@@ -11,7 +11,7 @@ use Phpnarr\AskPhp\Intent\IntentInterface;
  */
 class NoIntent implements IntentInterface
 {
-    public function getName(): string
+    public function getName()
     {
         return 'no';
     }
