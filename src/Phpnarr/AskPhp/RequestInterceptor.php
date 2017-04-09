@@ -2,55 +2,26 @@
 
 namespace Phpnarr\AskPhp;
 
+use Phpnarr\AskPhp\Exception\InvalidRequestInputException;
+use Phpnarr\AskPhp\ServiceRequest\Context;
+use Phpnarr\AskPhp\ServiceRequest\Request;
 use Phpnarr\AskPhp\ServiceRequest\RequestEnvelope;
+use Phpnarr\AskPhp\ServiceRequest\Session;
+use Phpnarr\AskPhp\ServiceRequest\Version;
 
 /**
  * Class RequestInterceptor
  *
  * @package Phpnarr\AskPhp
- *
- * {
- *  "version": "string",
- *  "session": {
- *    "new": true,
- *    "sessionId": "string",
- *    "application": {
- *      "applicationId": "string"
- *    },
- *    "attributes": {
- *      "string": {}
- *    },
- *    "user": {
- *      "userId": "string",
- *      "accessToken": "string"
- *    }
- *  },
- *  "context": {
- *    "System": {
- *      "application": {
- *        "applicationId": "string"
- *      },
- *      "user": {
- *        "userId": "string",
- *        "accessToken": "string"
- *      },
- *      "device": {
- *        "supportedInterfaces": {
- *          "AudioPlayer": {}
- *        }
- *      }
- *    },
- *    "AudioPlayer": {
- *      "token": "string",
- *      "offsetInMilliseconds": 0,
- *      "playerActivity": "string"
- *    }
- *  },
- *  "request": {}
- * }
  */
 class RequestInterceptor
 {
+    private $mapping = [
+        'application' => 'Phpnarr\AskPhp\ServiceRequest\Application',
+        'user'        => 'Phpnarr\AskPhp\ServiceRequest\User',
+        'attributes'  => 'Phpnarr\AskPhp\ServiceRequest\AttributeBag'
+    ];
+
     /**
      * @var RequestEnvelope
      */
@@ -91,53 +62,95 @@ class RequestInterceptor
      */
     public function handle($input)
     {
-        $parsed = $this->parseInput($input);
+        try {
+            $parsed = $this->parseInput($input);
 
-        foreach ($parsed as $node => $parsedInput) {
-            switch ($node) {
-                case RequestEnvelope::NODE_VERSION:
-                    $this->handleVersion($parsedInput);
-                    break;
-                case RequestEnvelope::NODE_CONTEXT:
-                    $this->handleContext($parsedInput);
-                    break;
-                case RequestEnvelope::NODE_SESSION:
-                    $this->handleSession($parsedInput);
-                    break;
-                case RequestEnvelope::NODE_REQUEST:
-                    $this->handleRequest($parsedInput);
-                    break;
-                default:
-                    break;
+            foreach ($parsed as $node => $parsedInput) {
+                switch ($node) {
+                    case RequestEnvelope::NODE_VERSION:
+                        $this->handleVersion($parsedInput);
+                        break;
+                    case RequestEnvelope::NODE_CONTEXT:
+                        $this->handleContext($parsedInput);
+                        break;
+                    case RequestEnvelope::NODE_SESSION:
+                        $this->handleSession($parsedInput);
+                        break;
+                    case RequestEnvelope::NODE_REQUEST:
+                        $this->handleRequest($parsedInput);
+                        break;
+                    default:
+                        break;
+                }
             }
+        } catch (InvalidRequestInputException $exception) {
+            // todo implement proper error handling
+            die($exception->getMessage());
         }
 
         return $this->requestEnvelope;
     }
 
 
+    /**
+     * @param $input
+     *
+     * @return array
+     *
+     * @throws InvalidRequestInputException if input is wrong/malformed
+     */
     protected function parseInput($input)
     {
-        return $input;
+        if (false === ($decoded = @json_decode($input, true))
+            || !is_array($decoded)
+        ) {
+            throw new InvalidRequestInputException('Invalid request input. Cannot handle request.');
+        }
+
+        return $decoded;
     }
 
 
+    /**
+     * @param mixed $input
+     */
     private function handleVersion($input)
     {
+        $version = Caster::castObject(new Version(), ['id' => $input], $this->mapping);
+
+        $this->requestEnvelope->setVersion($version);
     }
 
 
+    /**
+     * @param mixed $input
+     */
     private function handleSession($input)
     {
+        $session = Caster::castObject(new Session(), $input, $this->mapping);
+
+        $this->requestEnvelope->setSession($session);
     }
 
 
+    /**
+     * @param mixed $input
+     */
     private function handleContext($input)
     {
+        $context = Caster::castObject(new Context(), $input, $this->mapping);
+
+        $this->requestEnvelope->setContext($context);
     }
 
 
+    /**
+     * @param mixed $input
+     */
     private function handleRequest($input)
     {
+        $request = Caster::castObject(new Request(), $input, $this->mapping);
+
+        $this->requestEnvelope->setRequest($request);
     }
 }

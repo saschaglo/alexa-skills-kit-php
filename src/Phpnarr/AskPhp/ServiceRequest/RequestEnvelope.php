@@ -17,7 +17,7 @@ class RequestEnvelope extends AbstractEnvelope
     const NODE_REQUEST = 'request';
 
     /**
-     * @var string
+     * @var Version
      */
     private $version;
 
@@ -38,7 +38,7 @@ class RequestEnvelope extends AbstractEnvelope
 
 
     /**
-     * @return string
+     * @return Version
      */
     public function getVersion()
     {
@@ -47,9 +47,9 @@ class RequestEnvelope extends AbstractEnvelope
 
 
     /**
-     * @param string $version
+     * @param Version $version
      */
-    public function setVersion($version)
+    public function setVersion(Version $version)
     {
         $this->version = $version;
     }

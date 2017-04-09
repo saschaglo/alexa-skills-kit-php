@@ -24,8 +24,8 @@
     "php": ">=5.6"
   },
   "autoload": {
-    "psr-0": {
-      "AskPhp\\": "src/"
+    "psr-4": {
+      "Phpnarr\\AskPhxp": "src/Phpnarr/AskxPhp/"
     }
   }
 }
