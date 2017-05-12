@@ -2,44 +2,61 @@
 
 namespace Phpnarr\AskPhp;
 
+use Phpnarr\AskPhp\ServiceRequest\AttributeBag;
+
+/**
+ * Class Caster
+ *
+ * Capable of transforming (mapping) array data to a given object instance.
+ *
+ * @package Phpnarr\AskPhp
+ */
 class Caster
 {
-    public static function castObject($object, $data, array $mapping = [])
+    /**
+     * @param object $object the object to be mapped
+     * @param array  $data   the data as array which should be mapped to the object
+     *
+     * @return mixed
+     */
+    public static function castObject($object, $data)
     {
-        $reflectionObject = new \ReflectionObject($object);
-        $objectProperties = $reflectionObject->getProperties();
-        $objectMethods    = array_map(
-            function ($item) {
-                /** @var \ReflectionMethod $item */
-                return $item->getName();
-            },
-            $reflectionObject->getMethods(\ReflectionMethod::IS_PUBLIC)
-        );
+        if (!$object instanceof AttributeBag) {
+            $objectProperties = array_map(
+                function ($item) {
+                    /** @var \ReflectionProperty $item */
+                    return $item->getName();
+                },
+                (new \ReflectionObject($object))->getProperties()
+            );
+        } else {
+            $objectProperties = array_keys($data);
+        }
 
         foreach ($objectProperties as $objectProperty) {
-            $propertyName     = $objectProperty->getName();
+            $propertyName     = $objectProperty;
             $setterMethodName = 'set' . str_replace(' ', '', ucwords(strtr($propertyName, '_-', '  ')));
 
-            if (in_array($setterMethodName, $objectMethods)
-                && is_callable([$object, $setterMethodName])
-                && array_key_exists($objectProperty->getName(), $data)
+            if (is_callable([$object, $setterMethodName])
+                && array_key_exists($objectProperty, $data)
             ) {
-
-                if (is_array($data[$objectProperty->getName()])
-                    && array_key_exists($objectProperty->getName(), $mapping)
+                if (is_array($data[$objectProperty])
+                    && $object instanceof ProducibleObjectInterface
+                    && array_key_exists($objectProperty, $object->getMappings())
                 ) {
+                    $mappings = $object->getMappings();
+
                     call_user_func(
                         [$object, $setterMethodName],
                         self::castObject(
-                            new $mapping[$objectProperty->getName()],
-                            $data[$objectProperty->getName()],
-                            $mapping
+                            new $mappings[$objectProperty],
+                            $data[$objectProperty]
                         )
                     );
                 } else {
                     call_user_func(
                         [$object, $setterMethodName],
-                        $data[$objectProperty->getName()]
+                        $data[$objectProperty]
                     );
                 }
             }

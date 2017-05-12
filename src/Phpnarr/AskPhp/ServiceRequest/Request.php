@@ -2,7 +2,14 @@
 
 namespace Phpnarr\AskPhp\ServiceRequest;
 
-class Request
+use Phpnarr\AskPhp\ProducibleObjectInterface;
+
+/**
+ * Class Request
+ *
+ * @package Phpnarr\AskPhp\ServiceRequest
+ */
+class Request implements ProducibleObjectInterface
 {
     /**
      * @var string
@@ -25,9 +32,20 @@ class Request
     private $timestamp;
 
     /**
-     * @var array
+     * @var Intent
      */
     private $intent;
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMappings()
+    {
+        return [
+            'intent' => 'Phpnarr\AskPhp\ServiceRequest\Intent'
+        ];
+    }
 
 
     /**
@@ -103,7 +121,7 @@ class Request
 
 
     /**
-     * @return array
+     * @return Intent
      */
     public function getIntent()
     {
@@ -112,9 +130,9 @@ class Request
 
 
     /**
-     * @param array $intent
+     * @param Intent $intent
      */
-    public function setIntent($intent)
+    public function setIntent(Intent $intent)
     {
         $this->intent = $intent;
     }

@@ -2,6 +2,8 @@
 
 namespace Phpnarr\AskPhp\Intent;
 
+use Phpnarr\AskPhp\Application;
+
 /**
  * Interface IntentInterface
  *
@@ -15,4 +17,12 @@ interface IntentInterface
      * @return string
      */
     public function getName();
+
+
+    /**
+     * @param Application $application
+     *
+     * @return mixed
+     */
+    public function setApplication(Application $application);
 }

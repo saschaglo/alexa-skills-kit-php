@@ -2,6 +2,11 @@
 
 namespace Phpnarr\AskPhp\ServiceRequest;
 
+/**
+ * Class Application
+ *
+ * @package Phpnarr\AskPhp\ServiceRequest
+ */
 class Application
 {
     /**

@@ -16,12 +16,6 @@ use Phpnarr\AskPhp\ServiceRequest\Version;
  */
 class RequestInterceptor
 {
-    private $mapping = [
-        'application' => 'Phpnarr\AskPhp\ServiceRequest\Application',
-        'user'        => 'Phpnarr\AskPhp\ServiceRequest\User',
-        'attributes'  => 'Phpnarr\AskPhp\ServiceRequest\AttributeBag'
-    ];
-
     /**
      * @var RequestEnvelope
      */
@@ -116,7 +110,7 @@ class RequestInterceptor
      */
     private function handleVersion($input)
     {
-        $version = Caster::castObject(new Version(), ['id' => $input], $this->mapping);
+        $version = Caster::castObject(new Version(), ['id' => $input]);
 
         $this->requestEnvelope->setVersion($version);
     }
@@ -127,7 +121,7 @@ class RequestInterceptor
      */
     private function handleSession($input)
     {
-        $session = Caster::castObject(new Session(), $input, $this->mapping);
+        $session = Caster::castObject(new Session(), $input);
 
         $this->requestEnvelope->setSession($session);
     }
@@ -138,7 +132,7 @@ class RequestInterceptor
      */
     private function handleContext($input)
     {
-        $context = Caster::castObject(new Context(), $input, $this->mapping);
+        $context = Caster::castObject(new Context(), $input);
 
         $this->requestEnvelope->setContext($context);
     }
@@ -149,7 +143,7 @@ class RequestInterceptor
      */
     private function handleRequest($input)
     {
-        $request = Caster::castObject(new Request(), $input, $this->mapping);
+        $request = Caster::castObject(new Request(), $input);
 
         $this->requestEnvelope->setRequest($request);
     }

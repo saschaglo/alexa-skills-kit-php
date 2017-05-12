@@ -2,7 +2,14 @@
 
 namespace Phpnarr\AskPhp\ServiceRequest;
 
-class Session
+use Phpnarr\AskPhp\ProducibleObjectInterface;
+
+/**
+ * Class Session
+ *
+ * @package Phpnarr\AskPhp\ServiceRequest
+ */
+class Session implements ProducibleObjectInterface
 {
     /**
      * @var string
@@ -28,6 +35,19 @@ class Session
      * @var bool
      */
     private $new;
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMappings()
+    {
+        return [
+            'application' => 'Phpnarr\AskPhp\ServiceRequest\Application',
+            'attributes'  => 'Phpnarr\AskPhp\ServiceRequest\AttributeBag',
+            'user'        => 'Phpnarr\AskPhp\ServiceRequest\User',
+        ];
+    }
 
 
     /**
