@@ -1,6 +1,6 @@
 <?php
 
-namespace Phpnarr\AskPhp\ServiceRequest;
+namespace Phpnarr\AskPhp;
 
 /**
  * Class AttributeBag

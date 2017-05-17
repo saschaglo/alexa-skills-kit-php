@@ -2,6 +2,7 @@
 
 namespace Phpnarr\AskPhp\ServiceRequest;
 
+use Phpnarr\AskPhp\AttributeBag;
 use Phpnarr\AskPhp\ProducibleObjectInterface;
 
 /**
@@ -44,7 +45,7 @@ class Session implements ProducibleObjectInterface
     {
         return [
             'application' => 'Phpnarr\AskPhp\ServiceRequest\Application',
-            'attributes'  => 'Phpnarr\AskPhp\ServiceRequest\AttributeBag',
+            'attributes'  => 'Phpnarr\AskPhp\AttributeBag',
             'user'        => 'Phpnarr\AskPhp\ServiceRequest\User',
         ];
     }

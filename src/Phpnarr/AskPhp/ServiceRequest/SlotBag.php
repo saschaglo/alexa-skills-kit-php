@@ -2,6 +2,7 @@
 
 namespace Phpnarr\AskPhp\ServiceRequest;
 
+use Phpnarr\AskPhp\AttributeBag;
 use Phpnarr\AskPhp\Caster;
 
 /**

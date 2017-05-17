@@ -2,6 +2,7 @@
 
 namespace Phpnarr\AskPhp\ServiceRequest;
 
+use Phpnarr\AskPhp\AttributeBag;
 use Phpnarr\AskPhp\ProducibleObjectInterface;
 
 /**
@@ -33,7 +34,7 @@ class User implements ProducibleObjectInterface
     public function getMappings()
     {
         return [
-            'permissions' => 'Phpnarr\AskPhp\ServiceRequest\AttributeBag'
+            'permissions' => 'Phpnarr\AskPhp\AttributeBag'
         ];
     }
 

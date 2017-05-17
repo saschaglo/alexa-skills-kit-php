@@ -2,6 +2,7 @@
 
 namespace Phpnarr\AskPhp\ServiceRequest;
 
+use Phpnarr\AskPhp\AttributeBag;
 use Phpnarr\AskPhp\ProducibleObjectInterface;
 
 /**
@@ -28,7 +29,7 @@ class Device implements ProducibleObjectInterface
     public function getMappings()
     {
         return [
-            'supportedInterfaces' => 'Phpnarr\AskPhp\ServiceRequest\AttributeBag'
+            'supportedInterfaces' => 'Phpnarr\AskPhp\AttributeBag'
         ];
     }
 

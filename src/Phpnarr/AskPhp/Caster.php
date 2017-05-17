@@ -2,8 +2,6 @@
 
 namespace Phpnarr\AskPhp;
 
-use Phpnarr\AskPhp\ServiceRequest\AttributeBag;
-
 /**
  * Class Caster
  *
