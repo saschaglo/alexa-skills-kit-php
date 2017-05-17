@@ -110,7 +110,7 @@ class RequestInterceptor
      */
     private function handleVersion($input)
     {
-        $version = Caster::castObject(new Version(), ['id' => $input]);
+        $version = Caster::castObject(new Version(), ['version' => $input]);
 
         $this->requestEnvelope->setVersion($version);
     }
