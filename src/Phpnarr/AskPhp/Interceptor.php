@@ -10,11 +10,11 @@ use Phpnarr\AskPhp\ServiceRequest\Session;
 use Phpnarr\AskPhp\ServiceRequest\Version;
 
 /**
- * Class RequestInterceptor
+ * Class Interceptor
  *
  * @package Phpnarr\AskPhp
  */
-class RequestInterceptor
+class Interceptor
 {
     /**
      * @var RequestEnvelope
@@ -23,7 +23,7 @@ class RequestInterceptor
 
 
     /**
-     * RequestInterceptor constructor.
+     * Interceptor constructor.
      *
      * @param RequestEnvelope $requestEnvelope
      */

@@ -220,6 +220,23 @@ class AttributeBag implements \IteratorAggregate, \Countable, \ArrayAccess, \Ser
 
 
     /**
+     * Returns the values as object
+     *
+     * @return object
+     */
+    public function asObject()
+    {
+        $object = new \stdClass;
+
+        foreach ($this->all() as $property => $value) {
+            $object->{$property} = $value;
+        }
+
+        return $object;
+    }
+
+
+    /**
      * Modifies a given attribute
      *
      * @param mixed $value

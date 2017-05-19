@@ -3,6 +3,8 @@
 namespace Phpnarr\AskPhp\Intent;
 
 use Phpnarr\AskPhp\Application;
+use Phpnarr\AskPhp\InputInterface;
+use Phpnarr\AskPhp\OutputInterface;
 
 /**
  * Interface IntentInterface
@@ -25,4 +27,13 @@ interface IntentInterface
      * @return mixed
      */
     public function setApplication(Application $application);
+
+
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return mixed
+     */
+    public function execute(InputInterface $input, OutputInterface $output);
 }

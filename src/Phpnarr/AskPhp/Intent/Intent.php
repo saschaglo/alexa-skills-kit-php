@@ -4,7 +4,12 @@ namespace Phpnarr\AskPhp\Intent;
 
 use Phpnarr\AskPhp\Application;
 
-class AbstractIntent
+/**
+ * Class Intent
+ *
+ * @package Phpnarr\AskPhp\Intent
+ */
+abstract class Intent
 {
     /**
      * @var Application

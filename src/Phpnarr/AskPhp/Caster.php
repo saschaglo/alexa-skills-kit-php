@@ -2,6 +2,8 @@
 
 namespace Phpnarr\AskPhp;
 
+use Phpnarr\AskPhp\ServiceRequest\ProducibleObjectInterface;
+
 /**
  * Class Caster
  *

@@ -2,10 +2,9 @@
 
 namespace Phpnarr\AskPhp\ServiceResponse;
 
-use Phpnarr\AskPhp\AbstractEnvelope;
 use Phpnarr\AskPhp\AttributeBag;
 
-class ResponseEnvelope extends AbstractEnvelope
+class ResponseEnvelope implements \JsonSerializable
 {
     const NODE_VERSION = 'version';
     const NODE_SESSION_ATTRIBUTES = 'sessionAttributes';
@@ -78,5 +77,31 @@ class ResponseEnvelope extends AbstractEnvelope
     public function setResponse($response)
     {
         $this->response = $response;
+    }
+
+
+    /**
+     * @param bool $pretty
+     */
+    public function send($pretty = false)
+    {
+        if ($pretty) {
+            echo json_encode($this, JSON_PRETTY_PRINT);
+        } else {
+            echo json_encode($this);
+        }
+    }
+
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'version'           => $this->getVersion(),
+            'sessionAttributes' => $this->getSessionAttributes()->asObject(),
+            'response'          => $this->getResponse()
+        ];
     }
 }

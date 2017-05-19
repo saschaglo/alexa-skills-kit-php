@@ -2,7 +2,6 @@
 
 namespace Phpnarr\AskPhp\ServiceRequest;
 
-use Phpnarr\AskPhp\AbstractEnvelope;
 use Phpnarr\AskPhp\Exception\GeneralException;
 
 /**
@@ -10,7 +9,7 @@ use Phpnarr\AskPhp\Exception\GeneralException;
  *
  * @package Phpnarr\AskPhp\ServiceRequest
  */
-class RequestEnvelope extends AbstractEnvelope
+class RequestEnvelope
 {
     const NODE_VERSION = 'version';
     const NODE_SESSION = 'session';

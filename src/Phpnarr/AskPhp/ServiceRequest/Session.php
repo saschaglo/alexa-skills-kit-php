@@ -3,7 +3,6 @@
 namespace Phpnarr\AskPhp\ServiceRequest;
 
 use Phpnarr\AskPhp\AttributeBag;
-use Phpnarr\AskPhp\ProducibleObjectInterface;
 
 /**
  * Class Session
@@ -36,6 +35,15 @@ class Session implements ProducibleObjectInterface
      * @var bool
      */
     private $new;
+
+
+    /**
+     * Session constructor.
+     */
+    public function __construct()
+    {
+        $this->attributes = new AttributeBag();
+    }
 
 
     /**

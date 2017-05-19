@@ -2,8 +2,6 @@
 
 namespace Phpnarr\AskPhp\ServiceRequest;
 
-use Phpnarr\AskPhp\ProducibleObjectInterface;
-
 /**
  * Class Context
  *
